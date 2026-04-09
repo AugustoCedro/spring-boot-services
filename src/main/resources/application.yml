@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-boot-services
+  datasource:
+    url: jdbc:postgresql://localhost:5432/guilda_db
+    username: postgres
+    password: adm
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  main:
+    allow-bean-definition-overriding: true
