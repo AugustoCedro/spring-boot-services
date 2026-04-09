@@ -2,6 +2,7 @@ package org.example.springbootservices.model.audit;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.springbootservices.model.aventura.Adventurer;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
@@ -63,5 +64,10 @@ public class User {
             mappedBy = "user"
     )
     private List<UserRole> userRoleList = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "user"
+    )
+    private List<Adventurer> adventurerList = new ArrayList<>();
 
 }

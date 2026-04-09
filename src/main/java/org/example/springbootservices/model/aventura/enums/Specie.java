@@ -1,4 +1,4 @@
-package org.example.springbootservices.model;
+package org.example.springbootservices.model.aventura.enums;
 
 public enum Specie {
     LOBO,

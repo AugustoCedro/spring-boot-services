@@ -2,6 +2,8 @@ package org.example.springbootservices.model.audit;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.springbootservices.model.aventura.Adventurer;
+import org.example.springbootservices.model.aventura.Mission;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -57,5 +59,18 @@ public class Organization {
     )
     private List<Role> roleList = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "organization",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Adventurer> adventurerList = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "organization",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Mission> missionList = new ArrayList<>();
 
 }
