@@ -3,6 +3,7 @@ package org.example.springbootservices.model.audit;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,6 @@ public class Permission {
     private String description;
 
     @ManyToMany(mappedBy = "permissionList")
-    private List<Role> roleList;
+    private List<Role> roleList = new ArrayList<>();
 
 }

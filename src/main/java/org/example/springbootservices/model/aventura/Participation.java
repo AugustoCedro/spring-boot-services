@@ -50,4 +50,12 @@ public class Participation {
     @Column(name = "data_registro",nullable = false)
     private LocalDateTime registerDate;
 
+    public Participation(Mission mission, Adventurer adventurer, Role role, Integer rewardInGold, Boolean mvp) {
+        this.mission = mission;
+        this.adventurer = adventurer;
+        this.role = role;
+        this.rewardInGold = rewardInGold;
+        this.mvp = mvp;
+        this.registerDate = LocalDateTime.now();
+    }
 }

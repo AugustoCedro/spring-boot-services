@@ -1,5 +1,6 @@
 package org.example.springbootservices.model.aventura;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.springbootservices.model.audit.Organization;
@@ -7,6 +8,8 @@ import org.example.springbootservices.model.audit.User;
 import org.example.springbootservices.model.aventura.enums.AdventurerClass;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "aventureiros",schema = "aventura")
@@ -22,12 +25,20 @@ public class Adventurer {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "organizacao_id",nullable = false)
     private Organization organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id",nullable = false)
     private User user;
+
+    @OneToMany(
+            mappedBy = "adventurer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Participation> participations = new ArrayList<>();
 
     @OneToOne(
             fetch = FetchType.LAZY,
@@ -55,7 +66,14 @@ public class Adventurer {
     @Column(name = "data_atualizacao",nullable = false)
     private LocalDateTime updatedAt;
 
-
-
-
+    public Adventurer(Organization organization, User user, String name, AdventurerClass adventurerClass, Integer level) {
+        this.organization = organization;
+        this.user = user;
+        this.name = name;
+        this.adventurerClass = adventurerClass;
+        this.level = level;
+        this.active = true;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }

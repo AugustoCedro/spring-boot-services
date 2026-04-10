@@ -48,7 +48,7 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    private List<Permission> permissionList;
+    private List<Permission> permissionList = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "role"

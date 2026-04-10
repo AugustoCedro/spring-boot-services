@@ -2,7 +2,9 @@ package org.example.springbootservices.advice;
 
 import org.example.springbootservices.dto.ErrorFieldDTO;
 import org.example.springbootservices.dto.ErrorResponseDTO;
+import org.example.springbootservices.exception.AdventurerException;
 import org.example.springbootservices.exception.InvalidEnumValueException;
+import org.example.springbootservices.exception.MissionException;
 import org.example.springbootservices.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,5 +75,34 @@ public class HandleExceptionAdvice {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
+    @ExceptionHandler(AdventurerException.class)
+    public ResponseEntity<ErrorResponseDTO> handleAdventurerException(AdventurerException ex){
+        ErrorFieldDTO fieldError = new ErrorFieldDTO(
+                "Adventurer",
+                List.of(ex.getMessage())
+        );
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+                "Invalid Request",
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now(),
+                List.of(fieldError)
+        );
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    @ExceptionHandler(MissionException.class)
+    public ResponseEntity<ErrorResponseDTO> handleMissionException(MissionException ex){
+        ErrorFieldDTO fieldError = new ErrorFieldDTO(
+                "Mission",
+                List.of(ex.getMessage())
+        );
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+                "Invalid Request",
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now(),
+                List.of(fieldError)
+        );
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
 
 }

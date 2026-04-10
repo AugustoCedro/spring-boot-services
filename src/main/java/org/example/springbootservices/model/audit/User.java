@@ -1,5 +1,6 @@
 package org.example.springbootservices.model.audit;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.springbootservices.model.aventura.Adventurer;
@@ -31,6 +32,7 @@ public class User {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "organizacao_id",nullable = false)
     private Organization organization;
 
@@ -63,11 +65,13 @@ public class User {
     @OneToMany(
             mappedBy = "user"
     )
+    @JsonIgnore
     private List<UserRole> userRoleList = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "user"
     )
+    @JsonIgnore
     private List<Adventurer> adventurerList = new ArrayList<>();
 
 }

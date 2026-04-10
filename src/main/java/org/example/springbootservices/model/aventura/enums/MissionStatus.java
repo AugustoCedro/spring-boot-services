@@ -1,8 +1,33 @@
 package org.example.springbootservices.model.aventura.enums;
 
+import org.example.springbootservices.model.aventura.Mission;
+
 public enum MissionStatus {
-    PLANEJADA,
-    EM_ANDAMENTO,
-    CONCLUIDA,
-    CANCELADA
+    PLANEJADA{
+        @Override
+        public void apply(Mission mission) {
+
+        }
+    },
+    EM_ANDAMENTO {
+        @Override
+        public void apply(Mission mission){
+            mission.setStartedAt(mission.getCreatedAt().plusWeeks(1));
+        }
+    },
+    CONCLUIDA{
+        @Override
+        public void apply(Mission mission){
+            mission.setStartedAt(mission.getCreatedAt().plusWeeks(1));
+            mission.setFinishedAt(mission.getCreatedAt().plusWeeks(3));
+        }
+    },
+    CANCELADA{
+        @Override
+        public void apply(Mission mission) {
+
+        }
+    };
+
+    public abstract void apply(Mission mission);
 }

@@ -22,7 +22,7 @@ public class Companion {
     private Adventurer adventurer;
 
     @Column(name = "nome",nullable = false, length = 120)
-    private String nome;
+    private String name;
 
     @Column(name = "especie",nullable = false)
     private Specie specie;
