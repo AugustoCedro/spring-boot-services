@@ -1,5 +1,6 @@
 package org.example.springbootservices.service;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -134,4 +136,31 @@ public class AdventurerService {
 
         return mapper.toAdventurerSearchResponseDTO(adventurer);
     }
+
+    @Transactional
+    public void endAdventurerLink(Long id) {
+        Adventurer adventurer = adventurerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Adventurer Not Found"));
+
+        adventurer.setActive(false);
+    }
+    @Transactional
+    public void recruitAdventurer(Long id) {
+        Adventurer adventurer = adventurerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Adventurer Not Found"));
+
+        adventurer.setActive(true);
+    }
+    @Transactional
+    public void deleteCompanion(Long adventurerId) {
+        Adventurer adventurer = adventurerRepository.findById(adventurerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Adventurer Not Found"));
+
+        adventurer.setCompanion(null);
+    }
+
+    public List<Companion> getCompanion(){
+        return companionRepository.findAll();
+    }
+
 }
