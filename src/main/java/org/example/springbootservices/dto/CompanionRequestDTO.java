@@ -10,9 +10,6 @@ public record CompanionRequestDTO(
         @Length(max = 120)
         String name,
         @NotBlank
-        String specie,
-        @PositiveOrZero
-        @Max(100)
-        Integer loyalty
+        String specie
 ) {
 }

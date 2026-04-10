@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   db:
     image: leogloriainfnet/postgres-tp2-spring:1.0
-    container_name: tp2-spring
+    container_name: tp2-springboot
     environment:
-      POSTGRES_DB: guilda_db
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: adm
     ports:

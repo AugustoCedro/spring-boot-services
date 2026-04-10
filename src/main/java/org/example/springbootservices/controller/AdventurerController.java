@@ -4,10 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import org.example.springbootservices.dto.AdventurerDetailsResponseDTO;
-import org.example.springbootservices.dto.AdventurerRequestDTO;
-import org.example.springbootservices.dto.AdventurerResponseDTO;
-import org.example.springbootservices.dto.AdventurerSearchResponseDTO;
+import org.example.springbootservices.dto.*;
 import org.example.springbootservices.service.AdventurerService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -29,6 +26,12 @@ public class AdventurerController {
     public ResponseEntity<AdventurerSearchResponseDTO> registerAdventurer(@RequestBody @Valid AdventurerRequestDTO dto){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.register(dto));
+    }
+
+    @PostMapping("/{adventurerId}/companheiros")
+    public ResponseEntity<AdventurerSearchResponseDTO> registerAdventurerCompanion(@PathVariable Long adventurerId,@RequestBody @Valid CompanionRequestDTO dto){
+        AdventurerSearchResponseDTO adventurerDTO = service.registerCompanion(adventurerId,dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(adventurerDTO);
     }
 
     @GetMapping

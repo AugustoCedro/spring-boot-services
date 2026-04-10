@@ -29,4 +29,11 @@ public class Companion {
 
     @Column(name = "indice_lealdade",nullable = false)
     private Integer loyalty;
+
+    public Companion(Adventurer adventurer, String name, Specie specie, Integer loyalty) {
+        this.adventurer = adventurer;
+        this.name = name;
+        this.specie = specie;
+        this.loyalty = loyalty;
+    }
 }

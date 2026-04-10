@@ -36,6 +36,10 @@ public class Randomizer {
         return random.nextInt(2500) + 1;
     }
 
+    public static Integer generateRandomLoyalty(){
+        return random.nextInt(101);
+    }
+
     public static LocalDateTime randomDateTime() {
 
         LocalDateTime start = LocalDateTime.of(2025, 1, 1, 0, 0);

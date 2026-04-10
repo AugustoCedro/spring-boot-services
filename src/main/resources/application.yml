@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-boot-services
   datasource:
-    url: jdbc:postgresql://localhost:5432/guilda_db
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: adm
   jpa:
