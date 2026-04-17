@@ -19,7 +19,12 @@ import java.util.List;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "organizacoes_id_seq",
+            sequenceName = "organizacoes_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(name = "nome", unique = true, nullable = false)

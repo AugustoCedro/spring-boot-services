@@ -15,7 +15,12 @@ import java.time.LocalDateTime;
 public class AuditEntry {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "audit_entries_id_seq",
+            sequenceName = "audit_entries_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

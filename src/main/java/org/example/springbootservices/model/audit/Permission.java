@@ -16,7 +16,12 @@ import java.util.List;
 public class Permission {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "permissions_id_seq",
+            sequenceName = "permissions_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(nullable = false,unique = true)

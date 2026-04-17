@@ -25,7 +25,12 @@ import java.util.List;
 public class ApiKey {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "api_keys_id_seq",
+            sequenceName = "api_keys_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
