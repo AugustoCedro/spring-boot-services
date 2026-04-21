@@ -17,10 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TacticalPanelService {
 
-    //@Cacheable -> guarda o resultado pra não repetir consulta
-    //@CacheEvict -> limpa o cache quando os dados mudam pra não ficar desatualizado
-    //@Scheduled -> executa um método automaticamente em intervalos ou horários definidos, foi utilizado um intervalo de 1 minuto
-
     private TacticalPanelRepository repository;
 
     @Cacheable("topMissions")
@@ -30,11 +26,4 @@ public class TacticalPanelService {
                 .atStartOfDay();
         return repository.findTop10Recent(date);
     }
-
-    @Scheduled(fixedRate = 60000)
-    @CacheEvict(value = "topMissions", allEntries = true)
-    public void evictCache() {
-
-    }
-
 }
