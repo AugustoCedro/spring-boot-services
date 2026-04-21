@@ -13,8 +13,7 @@ public class TacticalPanelScheduler {
 
     private TacticalPanelService service;
 
-    //@Scheduled(cron = "0 0 0 * * *") // todo dia 00:00
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 0 * * *") // todo dia 00:00
     @CacheEvict(value = "topMissions", allEntries = true)
     public void limparCacheAutomaticamente() {
         System.out.println("Cache limpo!");
